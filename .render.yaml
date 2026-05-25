@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: multimodal-analyser-backend
+    env: node
+    plan: starter
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGODB_URI
+      - key: JWT_SECRET
+      - key: GROK_API_KEY
+      - key: PORT
+  - type: static
+    name: multimodal-analyser-frontend
+    env: static
+    plan: starter
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
