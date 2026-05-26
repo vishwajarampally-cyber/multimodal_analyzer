@@ -131,6 +131,16 @@ const Documents = () => {
                 </ul>
               </div>
             )}
+            {lastUpload.analysis.topQuestions?.length > 0 && (
+              <div style={{ marginTop: '1rem' }}>
+                <p><strong>Likely questions</strong></p>
+                <ul>
+                  {lastUpload.analysis.topQuestions.map((question, index) => (
+                    <li key={index}>{question}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {lastUpload.analysis.sentiment && (
               <div style={{ marginTop: '1rem' }}>
                 <p><strong>Sentiment</strong> {lastUpload.analysis.sentiment}</p>

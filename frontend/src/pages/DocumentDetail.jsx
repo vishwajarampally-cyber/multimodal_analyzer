@@ -76,6 +76,28 @@ const DocumentDetail = () => {
         <p className="page-subtitle" style={{ marginTop: '1rem' }}>{doc.analysis?.summary || 'No summary available.'}</p>
       </section>
 
+      {doc.analysis?.insights?.length > 0 && (
+        <section className="card">
+          <h2 className="page-title" style={{ fontSize: '1.5rem' }}>Insights</h2>
+          <ul style={{ marginTop: '1rem', color: '#cbd5e1', lineHeight: '1.8' }}>
+            {doc.analysis.insights.map((insight, index) => (
+              <li key={index}>{insight}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {doc.analysis?.topQuestions?.length > 0 && (
+        <section className="card">
+          <h2 className="page-title" style={{ fontSize: '1.5rem' }}>Likely questions</h2>
+          <ul style={{ marginTop: '1rem', color: '#cbd5e1', lineHeight: '1.8' }}>
+            {doc.analysis.topQuestions.map((question, index) => (
+              <li key={index}>{question}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <section className="card">
         <h2 className="page-title" style={{ fontSize: '1.5rem' }}>OCR / extracted text</h2>
         <pre style={{ marginTop: '1rem', padding: '1rem', borderRadius: '24px', background: 'rgba(15, 23, 42, 0.95)', color: '#e2e8f0', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>

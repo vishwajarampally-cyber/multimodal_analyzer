@@ -6,6 +6,7 @@ const analysisSchema = new mongoose.Schema({
   entities: [String],
   sentiment: String,
   insights: [String],
+  topQuestions: [String],
   metadata: mongoose.Schema.Types.Mixed,
 });
 
