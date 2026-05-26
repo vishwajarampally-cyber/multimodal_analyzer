@@ -65,10 +65,21 @@ Frontend `.env` values:
 
 - `VITE_API_BASE_URL` - Backend API URL (default `http://localhost:5000/api`)
 
-## Deployment
+## Vercel deployment
 
-- Frontend: Vercel or any static host for Vite build
-- Backend: Render, Heroku, or any Node + MongoDB service
+This repo is configured to deploy the Vite frontend and Express backend together on Vercel:
+
+- Frontend build output is served from `frontend/dist`
+- Backend requests to `/api/*` are handled by the serverless function in `api/index.js`
+- In production, the frontend API client defaults to same-origin `/api`
+
+Set these Vercel environment variables:
+
+- `MONGODB_URI` - Required MongoDB Atlas or other hosted MongoDB connection string
+- `GROK_API_KEY` - Optional Grok API key for AI analysis
+- `GROK_API_URL` - Optional override for the Grok endpoint
+
+Vercel serverless functions only provide temporary filesystem storage. Uploaded files are processed during the request and document metadata/extracted text are stored in MongoDB. Use object storage such as S3, Cloudinary, or Vercel Blob if you need durable file downloads.
 
 ## Notes
 

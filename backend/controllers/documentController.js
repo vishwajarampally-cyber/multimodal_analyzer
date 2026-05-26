@@ -64,7 +64,9 @@ const refreshAnalysis = async (req, res, next) => {
     const document = await Document.findById(req.params.id);
     if (!document) return res.status(404).json({ message: 'Document not found' });
 
-    const extractedText = await extractTextFromFile(document);
+    const extractedText = fs.existsSync(document.path)
+      ? await extractTextFromFile(document)
+      : document.text;
     const textFallback = extractedText || `File metadata: name=${document.originalName}, type=${document.mimetype}, size=${document.size} bytes.`;
     const analysis = await analyzeText(textFallback);
 
